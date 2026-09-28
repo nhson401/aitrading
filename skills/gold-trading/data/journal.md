@@ -1,5 +1,17 @@
 # Gold Trading Journal
 
+## 2026-09-28 18:17 UTC — Session blocked (still no market data)
+
+Thirteenth consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 56 / `connect_rejected`
+("the egress proxy denied the CONNECT (organization policy) or could
+not reach the destination"), allowlist unchanged (no market-data host
+present; 12+ hours blocked since campaign 1 init at 06:18). No state
+change, no candles fetched, no trades opened/closed, no campaign
+progress. User already notified at 10:20 UTC; not re-notifying for this
+identical recurrence — will flag again only when the error changes or
+egress is restored.
+
 ## 2026-09-28 — Campaign 1 start — Session blocked (no market data)
 
 Initialized campaign 1 state files (trades.json, performance.json,
