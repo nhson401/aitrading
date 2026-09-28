@@ -102,6 +102,18 @@ fetched, no trades opened/closed, no campaign progress. User already
 notified at 10:20 UTC; not re-notifying for this identical recurrence —
 will flag again only when the error changes or egress is restored.
 
+## 2026-09-28 16:18 UTC — Session blocked (still no market data)
+
+Eleventh consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` still returns `connect_rejected` / 403 on
+CONNECT per the agent proxy status endpoint (`recentRelayFailures`
+timestamped 16:18:06Z), allowlist unchanged (no market-data host present;
+10+ hours blocked since campaign 1 init at 06:18). No state change, no
+candles fetched, no trades opened/closed, no campaign progress. User
+already notified at 10:20 UTC; not re-notifying for this identical
+recurrence — will flag again only when the error changes or egress is
+restored.
+
 ## 2026-09-28 13:18 UTC — Session blocked (still no market data)
 
 Seventh consecutive hourly run, same blocker confirmed via WebFetch this
