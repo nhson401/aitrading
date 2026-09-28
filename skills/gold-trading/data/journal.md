@@ -68,3 +68,13 @@ environment's Network access (or add query1.finance.yahoo.com to the
 allowed domains) so the campaign can actually start. Will continue to
 withhold further identical hourly journal noise until the error changes
 or egress is restored.
+
+## 2026-09-28 12:18 UTC — Session blocked (still no market data)
+
+Sixth consecutive hourly run, identical blocker: `query1.finance.yahoo.com`
+still `connect_rejected` / 403 on CONNECT per the agent proxy status
+endpoint, allowlist unchanged (no market-data host present). No state
+change, no candles fetched, no trades opened/closed, no campaign
+progress. User already notified at 10:20 UTC; not re-notifying for this
+identical recurrence — will flag again only when the error changes or
+egress is restored.
