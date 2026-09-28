@@ -43,3 +43,19 @@ market-data host present). No state change, no candles fetched, no
 trades opened/closed, no campaign progress. Continuing to withhold
 further identical hourly journal noise per the 06:18/07:18 precedent;
 will flag again only when the error changes or egress is restored.
+
+## 2026-09-28 10:20 UTC — Session blocked (still no market data), user notified
+
+Fourth consecutive run, identical blocker confirmed via both `curl` and
+`WebFetch`: `query1.finance.yahoo.com` still rejected with
+`connect_rejected` / 403 on CONNECT, proxy allowlist unchanged (no
+market-data host present; only api.anthropic.com, package registries,
+and private ranges are allowed). No state change, no candles fetched, no
+trades opened/closed, no campaign progress since campaign 1 was
+initialized at 06:18. Since the campaign has now made zero progress
+across 4 consecutive hourly sessions solely due to this environment
+setting, pushed a notification to the user asking them to widen this
+environment's Network access (or add query1.finance.yahoo.com to the
+allowed domains) so the campaign can actually start. Will continue to
+withhold further identical hourly journal noise until the error changes
+or egress is restored.
