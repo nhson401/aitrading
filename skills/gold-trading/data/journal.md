@@ -1,5 +1,19 @@
 # Gold Trading Journal
 
+## 2026-09-28 23:17 UTC — Session blocked (still no market data)
+
+Eighteenth consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 56 / `connect_rejected` (agent
+proxy status endpoint confirms "gateway answered 403 to CONNECT (policy
+denial or upstream failure)" at 23:17:35Z). Proxy allowlist (`noProxy`)
+unchanged — only api.anthropic.com, package registries (npm/pypi/crates/
+golang), and private ranges permitted; no market-data host present.
+17+ hours blocked since campaign 1 init at 06:18. No state change, no
+candles fetched, no trades opened/closed, no campaign progress. User
+already notified at 10:20 UTC; not re-notifying for this identical
+recurrence — will flag again only when the error changes or egress is
+restored.
+
 ## 2026-09-28 22:18 UTC — Session blocked (still no market data)
 
 Seventeenth consecutive hourly run, identical blocker: `curl` to
