@@ -44,6 +44,15 @@ trades opened/closed, no campaign progress. Continuing to withhold
 further identical hourly journal noise per the 06:18/07:18 precedent;
 will flag again only when the error changes or egress is restored.
 
+## 2026-09-28 11:18 UTC — Session blocked (still no market data)
+
+Fifth consecutive run, same blocker: `query1.finance.yahoo.com` still
+`connect_rejected` / 403 on CONNECT per the agent proxy status endpoint,
+allowlist unchanged. No state change, no candles fetched, no trades
+opened/closed. User already notified at 10:20 UTC; not re-notifying for
+this identical recurrence — will flag again only when the error changes
+or egress is restored.
+
 ## 2026-09-28 10:20 UTC — Session blocked (still no market data), user notified
 
 Fourth consecutive run, identical blocker confirmed via both `curl` and
