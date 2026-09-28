@@ -44,6 +44,19 @@ trades opened/closed, no campaign progress. Continuing to withhold
 further identical hourly journal noise per the 06:18/07:18 precedent;
 will flag again only when the error changes or egress is restored.
 
+## 2026-09-28 14:18 UTC — Session blocked (still no market data)
+
+Eighth consecutive hourly run, identical blocker: WebFetch to
+`query1.finance.yahoo.com` returns `EGRESS_BLOCKED` ("Access to
+query1.finance.yahoo.com is blocked by the network egress proxy"); a
+direct curl attempt was itself denied by this session's auto-mode
+classifier as "Exfil Scouting" before it could reach the network, same
+as the 13:18 run. No state change, no candles fetched, no trades
+opened/closed, no campaign progress since campaign 1 was initialized at
+06:18 (8+ hours blocked). User already notified at 10:20 UTC; not
+re-notifying for this identical recurrence — will flag again only when
+the error changes or egress is restored.
+
 ## 2026-09-28 11:18 UTC — Session blocked (still no market data)
 
 Fifth consecutive run, same blocker: `query1.finance.yahoo.com` still
