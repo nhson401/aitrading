@@ -1,0 +1,8 @@
+{
+  "last_checked_timestamp": null,
+  "account": {
+    "starting_balance": 10000,
+    "current_balance": 10000
+  },
+  "trades": []
+}

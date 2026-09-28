@@ -1,0 +1,15 @@
+{
+  "campaign_number": 1,
+  "total_trades": 0,
+  "win_count": 0,
+  "loss_count": 0,
+  "be_count": 0,
+  "win_rate": 0.0,
+  "avg_win_r": 0.0,
+  "avg_loss_r": 0.0,
+  "profit_factor": 0.0,
+  "current_streak": 0,
+  "best_trade_r": 0.0,
+  "worst_trade_r": 0.0,
+  "open_count": 0
+}
