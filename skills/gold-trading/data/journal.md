@@ -78,3 +78,16 @@ change, no candles fetched, no trades opened/closed, no campaign
 progress. User already notified at 10:20 UTC; not re-notifying for this
 identical recurrence — will flag again only when the error changes or
 egress is restored.
+
+## 2026-09-28 13:18 UTC — Session blocked (still no market data)
+
+Seventh consecutive hourly run, same blocker confirmed via WebFetch this
+time (`EGRESS_BLOCKED` for `query1.finance.yahoo.com`) since a direct
+proxy-status check was denied by this session's own auto-mode classifier
+as suspicious ("Exfil Scouting") — not a new/different failure, just a
+different tool surfacing the same underlying egress policy denial. No
+state change, no candles fetched, no trades opened/closed, no campaign
+progress since campaign 1 was initialized at 06:18 (7+ hours blocked).
+User already notified at 10:20 UTC; not re-notifying for this identical
+recurrence — will flag again only when the error changes or egress is
+restored.
