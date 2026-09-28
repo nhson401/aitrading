@@ -31,3 +31,15 @@ identical hourly occurrences of this same blocker unless the error
 changes or access is restored — see the 06:18 entry for the full
 explanation and required fix (widen this environment's Network access
 setting to allow a market-data host).
+
+## 2026-09-28 08:18 UTC — Session blocked (still no market data)
+
+Third consecutive hourly run with the identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 1 / no response, and the agent
+proxy status endpoint confirms `connect_rejected` — "gateway answered
+403 to CONNECT (policy denial or upstream failure)" — with the proxy's
+`noProxy`/allowlist unchanged from the 06:18 and 07:18 checks (no
+market-data host present). No state change, no candles fetched, no
+trades opened/closed, no campaign progress. Continuing to withhold
+further identical hourly journal noise per the 06:18/07:18 precedent;
+will flag again only when the error changes or egress is restored.
