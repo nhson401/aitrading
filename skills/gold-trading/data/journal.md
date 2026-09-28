@@ -114,6 +114,21 @@ already notified at 10:20 UTC; not re-notifying for this identical
 recurrence — will flag again only when the error changes or egress is
 restored.
 
+## 2026-09-28 17:18 UTC — Session blocked (still no market data)
+
+Twelfth consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 56 / `connect_rejected` (agent
+proxy status endpoint confirms organization policy denial on the CONNECT),
+and `WebFetch` to the same URL returns `EGRESS_BLOCKED`. Re-read
+`/root/.ccr/README.md` to confirm this is a 403/407-class organization
+policy denial, which it explicitly says to report rather than retry or
+route around — so no alternate market-data host was attempted. Allowlist
+unchanged (no market-data host present; 11+ hours blocked since campaign 1
+init at 06:18). No state change, no candles fetched, no trades
+opened/closed, no campaign progress. User already notified at 10:20 UTC;
+not re-notifying for this identical recurrence — will flag again only when
+the error changes or egress is restored.
+
 ## 2026-09-28 13:18 UTC — Session blocked (still no market data)
 
 Seventh consecutive hourly run, same blocker confirmed via WebFetch this
