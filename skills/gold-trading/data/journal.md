@@ -1,5 +1,21 @@
 # Gold Trading Journal
 
+## 2026-09-29 07:19 UTC — Session blocked (still no market data)
+
+Twenty-seventh consecutive hourly run, identical blocker: `WebFetch` to
+`query1.finance.yahoo.com` returns `EGRESS_BLOCKED` ("Access to
+query1.finance.yahoo.com is blocked by the network egress proxy"); a
+direct `curl` to the same host reset mid-connection (exit 56). Re-read
+`/root/.ccr/README.md`, which confirms this class of failure (403/407
+organization policy denial) is to be reported, not retried or routed
+around — no alternate market-data host was attempted. Allowlist
+unchanged (no market-data host present). Now 25+ hours blocked since
+campaign 1 init at 06:18 on 2026-09-28. No state change, no candles
+fetched, no trades opened/closed, no campaign progress. User already
+notified at 10:20 UTC on 2026-09-28; not re-notifying for this identical
+recurrence — will flag again only when the error changes or egress is
+restored.
+
 ## 2026-09-29 06:18 UTC — Session blocked (still no market data)
 
 Twenty-sixth consecutive hourly run, identical blocker: `curl` to
