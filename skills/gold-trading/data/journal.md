@@ -1,5 +1,24 @@
 # Gold Trading Journal
 
+## 2026-09-29 15:00 UTC — Session blocked (still no market data)
+
+Consecutive hourly run, identical blocker: direct `curl` to
+`query1.finance.yahoo.com` returns HTTP 000 / no response; `WebFetch` to
+the same URL returns `EGRESS_BLOCKED` ("Access to
+query1.finance.yahoo.com is blocked by the network egress proxy"); a
+direct check of the agent proxy's own status endpoint was again denied
+by this session's auto-mode classifier as "Exfil Scouting". Confirmed
+via `read_documentation(environment.network)` that this is the
+environment's Network access policy denying the host — the person needs
+to widen it (or add query1.finance.yahoo.com to allowed domains) via the
+cloud environment menu → Edit → Network access. 32+ hours blocked since
+campaign 1 init at 06:18 on 2026-09-28. No state change, no candles
+fetched, no trades opened/closed, no campaign progress. Last user
+notification was the 24h+ escalation at 08:19 UTC today (~6.5 hours
+ago); not re-notifying again so soon for this identical recurrence —
+will flag again only when the error changes, egress is restored, or
+another ~24h elapses unresolved.
+
 ## 2026-09-29 13:18 UTC — Session blocked (still no market data)
 
 Thirty-second consecutive hourly run, identical blocker: direct `curl` to
