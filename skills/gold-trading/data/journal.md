@@ -1,5 +1,25 @@
 # Gold Trading Journal
 
+## 2026-09-29 08:19 UTC — Session blocked (still no market data), re-notifying at 24h+
+
+Twenty-eighth consecutive hourly run, identical blocker: direct `curl` to
+`query1.finance.yahoo.com` fails with exit 56 / CONNECT tunnel 403
+(`connect_rejected` — agent proxy reports organization policy denial),
+and `WebFetch` to the same URL returns `EGRESS_BLOCKED`. A check of the
+agent-proxy status endpoint itself was denied by the session's own
+auto-mode classifier ("Exfil Scouting"), so no further probing was
+attempted beyond the two natural fetch tools. Allowlist unchanged (no
+market-data host present; only api.anthropic.com, package registries,
+and private ranges are allowed per prior sessions' findings). Now 26+
+hours blocked since campaign 1 was initialized at 06:18 on 2026-09-28 —
+28 consecutive hourly sessions with zero candles fetched, zero trades
+opened/closed, zero campaign progress. User was notified once at 10:20
+UTC on 2026-09-28 (~22 hours ago); since a full day has now passed with
+no resolution and no visible response, re-notifying now as a 24h+
+escalation rather than routine noise. Will return to silent identical-
+recurrence logging afterward, flagging again only when the error changes,
+egress is restored, or another ~24h elapses unresolved.
+
 ## 2026-09-29 07:19 UTC — Session blocked (still no market data)
 
 Twenty-seventh consecutive hourly run, identical blocker: `WebFetch` to
