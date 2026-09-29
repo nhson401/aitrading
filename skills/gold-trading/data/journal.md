@@ -532,6 +532,25 @@ notified at 2026-09-28 10:20 UTC; not re-notifying for this identical
 recurrence — will flag again only when the error changes or egress is
 restored.
 
+## 2026-09-29 21:17 UTC — Session blocked (still no market data)
+
+40th consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 56 / CONNECT tunnel failed with
+response 403; agent proxy status endpoint confirms `recentRelayFailures`
+with this exact host/reason (`connect_rejected`, gateway answered 403 to
+CONNECT) timestamped 2026-09-29T21:17:32Z, and the allowlist (`noProxy`)
+still has no market-data host present — only api.anthropic.com, package
+registries, and private ranges. This is the same 403-class organization
+policy denial per `/root/.ccr/README.md`, which says to report rather
+than retry or route around, so no alternate market-data host was
+attempted. No state change, no candles fetched, no trades opened/closed,
+no campaign progress since campaign 1 was initialized at 2026-09-28 06:18
+(39+ hours blocked). User already notified at 2026-09-28 10:20 UTC and
+re-escalated at 2026-09-29 08:19 UTC (~13 hours ago); not re-notifying
+again so soon for this identical recurrence — will flag again only when
+the error changes, egress is restored, or another ~24h elapses
+unresolved.
+
 ## 2026-09-29 20:18 UTC — Session blocked (still no market data)
 
 39th consecutive hourly run, identical blocker: `curl` to
