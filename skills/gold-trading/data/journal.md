@@ -1,5 +1,20 @@
 # Gold Trading Journal
 
+## 2026-09-29 04:17 UTC — Session blocked (still no market data)
+
+Twenty-third consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 56 / CONNECT tunnel failed; a
+direct check of the agent proxy's own status endpoint was again denied
+by this session's auto-mode classifier as "Exfil Scouting" (same as
+several earlier runs). Proxy allowlist unchanged — only
+api.anthropic.com, package registries (npm/pypi/crates/golang), and
+private ranges permitted; no market-data host present. 22+ hours
+blocked since campaign 1 init at 06:18 on 2026-09-28. No state change,
+no candles fetched, no trades opened/closed, no campaign progress. User
+already notified at 10:20 UTC on 2026-09-28; not re-notifying for this
+identical recurrence — will flag again only when the error changes or
+egress is restored.
+
 ## 2026-09-29 03:17 UTC — Session blocked (still no market data)
 
 Twenty-second consecutive hourly run, identical blocker: `curl` to
