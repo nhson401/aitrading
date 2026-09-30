@@ -1033,3 +1033,24 @@ UTC (~15 hours ago); not re-notifying again yet for this identical
 recurrence — will flag again only when the error changes, egress is
 restored, or another ~24h elapses unresolved (next check ~2026-09-30
 08:19 UTC).
+
+## 2026-09-30 21:17 UTC — Session blocked (still no market data)
+
+64th+ consecutive hourly run, identical blocker: `curl` to
+`query1.finance.yahoo.com` returns exit 56 / CONNECT tunnel failed,
+HTTP code 000. Confirmed via `read_documentation(environment.network)`
+that this is an environment network-policy denial: the sandbox's
+outbound allowlist does not include a market-data host (Yahoo Finance
+or otherwise) — only api.anthropic.com, package registries, and
+private ranges are allowed. This is a settings/config issue the agent
+cannot route around; per proxy guidance the correct action is to
+report, not retry or bypass. No state change, no candles fetched, no
+trades opened/closed. Campaign 1 has made zero progress since it was
+initialized at 2026-09-28 06:18 UTC — now ~63 hours blocked.
+
+User was notified at 2026-09-28 10:20 UTC and re-escalated at
+2026-09-29 08:19 UTC. It has now been ~37 hours since the last
+escalation (past the ~24h re-notify threshold this journal has been
+using), so re-notifying now with a push notification. Next check:
+will flag again only when the error changes, egress is restored, or
+another ~24h elapses unresolved.
