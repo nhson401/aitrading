@@ -1,5 +1,29 @@
 # Gold Trading Journal
 
+## 2026-09-30 06:18 UTC — Session blocked (still no market data)
+
+49th consecutive hourly run, identical blocker: direct `curl` to
+`query1.finance.yahoo.com` returns exit 56 / HTTP 000 (CONNECT tunnel
+failed). A direct check of the agent proxy's own `__agentproxy/status`
+endpoint was denied by this session's auto-mode classifier as "Exfil
+Scouting" (same class of denial as several earlier runs), so the
+allowlist itself could not be re-inspected this run — but the underlying
+market-data fetch failure is unchanged from all 48 prior runs. Re-read
+`environment.network` documentation, which confirms this is the
+environment's Network access policy denying the host and that the fix is
+for the person to widen Network access (or add
+query1.finance.yahoo.com to allowed domains) via the cloud environment
+menu → Edit. Per `/root/.ccr/README.md`, this class of failure (403-class
+organization policy denial) is to be reported, not retried or routed
+around, so no alternate market-data host was attempted and no data was
+fabricated. ~48 hours blocked since campaign 1 init at 06:18 on
+2026-09-28. No state change, no candles fetched, no trades opened/closed,
+no campaign progress. Last escalation notification was at 08:19 UTC on
+2026-09-29 (~22 hours ago); not yet re-notifying — the ~24h mark since
+that escalation (~08:19 UTC 2026-09-30) is ~2 hours away and will be hit
+on a subsequent hourly run, so deferring to that threshold rather than
+notifying early for an unchanged condition.
+
 ## 2026-09-30 05:17 UTC — Session blocked (still no market data)
 
 48th consecutive hourly run, identical blocker: direct `curl` to
