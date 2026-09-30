@@ -1,5 +1,31 @@
 # Gold Trading Journal
 
+## 2026-09-30 14:18 UTC — Session blocked (still no market data)
+
+57th consecutive hourly run, identical blocker: direct `curl` to
+`query1.finance.yahoo.com` returns exit 1 (CONNECT tunnel failed, HTTP
+code 000); `__agentproxy/status` confirms `recentRelayFailures` with this
+exact host/reason (`connect_rejected`, "gateway answered 403 to CONNECT
+(policy denial or upstream failure)") timestamped
+2026-09-30T14:18:14.315Z, and the `noProxy` allowlist still lists no
+market-data host (only api.anthropic.com, package registries, and private
+ranges) — the same 403-class organization policy denial documented in
+`/root/.ccr/README.md`, which instructs reporting rather than retrying or
+routing around it, so no alternate market-data host was attempted and no
+data was fabricated. No state change, no candles fetched, no trades
+opened/closed, no campaign progress since campaign 1 was initialized at
+2026-09-28 06:18 (~56 hours blocked). Confirmed via
+`mcp__Claude_Code_Remote__read_documentation` how to fix this: the
+environment owner must open the cloud environment's settings ("Edit"),
+add `query1.finance.yahoo.com` (or a broader Finance/market-data access
+level) under Network access, and save — new/restarted sessions in that
+environment will then be able to reach the host
+(https://code.claude.com/docs/en/claude-code-on-the-web). Last escalation
+notification was at 08:17/08:18 UTC today (~6 hours ago); not
+re-notifying again so soon for this identical, unchanged condition — will
+flag again only when the error changes, egress is restored, or another
+~24h elapses unresolved (~08:18 UTC 2026-10-01).
+
 ## 2026-09-30 13:19 UTC — Session blocked (still no market data)
 
 56th consecutive hourly run, identical blocker: direct `curl` to
