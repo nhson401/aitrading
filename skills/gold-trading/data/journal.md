@@ -1054,3 +1054,21 @@ escalation (past the ~24h re-notify threshold this journal has been
 using), so re-notifying now with a push notification. Next check:
 will flag again only when the error changes, egress is restored, or
 another ~24h elapses unresolved.
+
+## 2026-09-30 22:18 UTC — Session blocked (still no market data)
+
+65th+ consecutive hourly run, identical blocker confirmed again:
+`curl` to `query1.finance.yahoo.com` returns `CONNECT tunnel failed,
+response 403` at the sandbox's HTTPS proxy. Re-checked
+`read_documentation(environment.network)`: this remains an
+environment network-policy denial, not a transient proxy issue — the
+fix is for the user to broaden Network access (or allow this host)
+in the cloud environment's settings. No candles fetched, no trades
+opened/closed, no state change. Campaign 1 is still at 0/1000 trades,
+~64 hours after being initialized at 2026-09-28 06:18 UTC.
+
+Only ~1 hour has passed since the prior run's escalation push
+notification, well under the ~24h re-notify threshold, and nothing
+about the error has changed — so no new push notification this run.
+Will notify again only when the error changes, egress is restored,
+or ~24h elapses unresolved from the last escalation.
