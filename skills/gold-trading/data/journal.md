@@ -1,5 +1,25 @@
 # Gold Trading Journal
 
+## 2026-09-30 13:19 UTC — Session blocked (still no market data)
+
+56th consecutive hourly run, identical blocker: direct `curl` to
+`query1.finance.yahoo.com` returns exit 56 (CONNECT tunnel failed, HTTP
+code 000); `WebFetch` to the same host returns `EGRESS_BLOCKED`
+("Access to query1.finance.yahoo.com is blocked by the network egress
+proxy") — the same 403-class organization policy denial documented in
+`/root/.ccr/README.md`, which instructs reporting rather than retrying
+or routing around it. A direct `__agentproxy/status` check was denied
+by this session's own auto-mode classifier this run (as has happened
+before), so status was confirmed via the two data-fetch tools instead;
+no alternate market-data host was attempted and no data was fabricated.
+No state change, no candles fetched, no trades opened/closed, no
+campaign progress since campaign 1 was initialized at 2026-09-28 06:18
+(~55 hours blocked). Last escalation notification was at 08:17/08:18 UTC
+today (~5 hours ago); not re-notifying again so soon for this identical,
+unchanged condition — will flag again only when the error changes,
+egress is restored, or another ~24h elapses unresolved (~08:18 UTC
+2026-10-01).
+
 ## 2026-09-30 12:17 UTC — Session blocked (still no market data)
 
 55th consecutive hourly run, identical blocker: direct `curl` to
