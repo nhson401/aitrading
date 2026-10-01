@@ -1,5 +1,36 @@
 # Gold Trading Journal
 
+## 2026-10-01 19:17 UTC — Session blocked (still no market data)
+
+84th+ consecutive hourly run, identical blocker confirmed again via two
+independent checks: direct `curl` to `query1.finance.yahoo.com` returns
+HTTP_CODE 000 (CONNECT tunnel failed, no response), and `WebFetch` to the
+same URL returns `EGRESS_BLOCKED` ("Access to query1.finance.yahoo.com is
+blocked by the network egress proxy"). A direct check of the agent
+proxy's own `__agentproxy/status` endpoint was denied by this session's
+auto-mode classifier this run (reason: "Containment Escape"), so the
+allowlist itself could not be re-inspected directly, but the two
+independent data-fetch failures confirm the block is unchanged.
+Re-confirmed via `read_documentation(environment.network)`: this is the
+environment's Network access policy denying the host; the fix is for the
+environment owner to widen Network access (or allowlist
+query1.finance.yahoo.com) via the cloud environment menu → Edit. Per
+`/root/.ccr/README.md`, this is a 403-class organization policy denial to
+report, not retry or route around, so no alternate market-data host was
+attempted and no data was fabricated. No candles fetched, no indicators
+computed, no trades opened/closed, no state change. Campaign 1 remains at
+0/1000 trades, ~85 hours after being initialized at 2026-09-28 06:18 UTC.
+
+Verified git hygiene: local HEAD matches `origin/main` (d6f9c09) exactly
+— last run's commit landed on GitHub correctly, no divergence.
+
+Last escalation push notification was at ~21:17-21:18 UTC on
+2026-09-30, ~22 hours ago — still just under the ~24h re-notify
+threshold established by prior sessions, and nothing about the error has
+changed, so no new push notification this run. Will notify again when the
+error changes, egress is restored, or the ~24h mark (~21:17 UTC
+2026-10-01, ~2 hours away) is reached unresolved.
+
 ## 2026-10-01 17:17 UTC — Session blocked (still no market data)
 
 82nd+ consecutive hourly run, identical blocker confirmed again: direct
