@@ -1316,3 +1316,25 @@ nothing about the error has changed — so no new push notification this
 run. Will notify again when the error changes, egress is restored, or
 ~24h elapses unresolved from the last escalation (around 2026-10-01
 21:18 UTC).
+
+## 2026-10-01 10:17 UTC — Session blocked (still no market data)
+
+77th+ consecutive hourly run, identical blocker confirmed again:
+`curl` to `query1.finance.yahoo.com` returns exit 56 / CONNECT tunnel
+failed, HTTP code 000. `/__agentproxy/status` confirms the same
+`connect_rejected` entry (gateway answered 403 to CONNECT) timestamped
+2026-10-01T10:16:44.917Z, and `noProxy` still has no market-data host
+— only api.anthropic.com, package registries, and private ranges.
+Per `/root/.ccr/README.md`, this is a 403-class organization policy
+denial to report, not retry or route around, so no alternate
+market-data host was attempted and no data was fabricated. No candles
+fetched, no indicators computed, no trades opened/closed, no state
+change. Campaign 1 remains at 0/1000 trades, ~76 hours after being
+initialized at 2026-09-28 06:18 UTC.
+
+~13 hours have passed since the last escalation push notification
+(~2026-09-30 21:18 UTC), still under the ~24h re-notify threshold, and
+nothing about the error has changed — so no new push notification this
+run. Will notify again when the error changes, egress is restored, or
+~24h elapses unresolved from the last escalation (around 2026-10-01
+21:18 UTC).
