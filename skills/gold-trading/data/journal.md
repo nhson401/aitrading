@@ -1,5 +1,34 @@
 # Gold Trading Journal
 
+## 2026-10-01 17:17 UTC — Session blocked (still no market data)
+
+82nd+ consecutive hourly run, identical blocker confirmed again: direct
+`curl` to `query1.finance.yahoo.com` returns exit 56 / HTTP 000 (CONNECT
+tunnel failed, no response). `__agentproxy/status` was reachable this run
+and confirms a fresh `recentRelayFailures` entry for this exact
+host/reason (`connect_rejected`, "gateway answered 403 to CONNECT (policy
+denial or upstream failure)") timestamped 2026-10-01T17:17:20.551Z, and
+the `noProxy` allowlist still lists no market-data host (only
+api.anthropic.com, package registries, and private ranges) — unchanged
+from all 81+ prior runs. Per `/root/.ccr/README.md`, this is a 403-class
+organization policy denial to report, not retry or route around, so no
+alternate market-data host was attempted and no data was fabricated. No
+candles fetched, no indicators computed, no trades opened/closed, no
+state change. Campaign 1 remains at 0/1000 trades, ~83 hours after being
+initialized at 2026-09-28 06:18 UTC.
+
+Verified git hygiene: local HEAD is detached (cosmetic, from committing
+directly to `origin/main`), but `git fetch origin main` confirms
+`origin/main` (8d6e45d) matches this session's starting HEAD exactly —
+last run's commit landed on GitHub correctly.
+
+Last escalation push notification was at ~21:17-21:18 UTC on
+2026-09-30, ~20 hours ago — still under the ~24h re-notify threshold
+established by prior sessions, and nothing about the error has changed,
+so no new push notification this run. Will notify again when the error
+changes, egress is restored, or the ~24h mark (~21:17 UTC 2026-10-01,
+~4 hours away) is reached unresolved.
+
 ## 2026-10-01 16:18 UTC — Session blocked (still no market data)
 
 81st+ consecutive hourly run, identical blocker confirmed again: direct
