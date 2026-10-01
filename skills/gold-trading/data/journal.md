@@ -1,5 +1,27 @@
 # Gold Trading Journal
 
+## 2026-10-01 05:17 UTC — Session blocked (still no market data)
+
+72nd+ consecutive hourly run, identical blocker: direct `curl` to
+`query1.finance.yahoo.com` returns exit 56 / HTTP 000 (CONNECT tunnel
+failed, `connect_rejected` — "the egress proxy denied the CONNECT
+(organization policy) or could not reach the destination"); a direct
+check of the agent proxy's own `__agentproxy/status` endpoint was again
+denied by this session's auto-mode classifier as "Exfil Scouting" (same
+recurring denial as many earlier runs), so the allowlist itself could
+not be re-inspected this run — but the underlying market-data fetch
+failure is unchanged from all 71+ prior runs. Per `/root/.ccr/README.md`,
+this is a 403-class organization policy denial to be reported, not
+retried or routed around, so no alternate market-data host was attempted
+and no data was fabricated. No state change, no candles fetched, no
+trades opened/closed, no campaign progress since campaign 1 was
+initialized at 2026-09-28 06:18 (~71 hours blocked). Last escalation push
+notification was at 21:17 UTC yesterday (~8 hours ago); well under the
+~24h re-notify threshold and nothing about the error has changed, so no
+new push notification this run — will flag again only when the error
+changes, egress is restored, or ~24h elapses unresolved from the last
+escalation (~21:17 UTC 2026-10-01).
+
 ## 2026-10-01 04:16 UTC — Session blocked (still no market data)
 
 71st+ consecutive hourly run, identical blocker: direct `curl` to
