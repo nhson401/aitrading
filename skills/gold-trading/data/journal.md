@@ -1,5 +1,43 @@
 # Gold Trading Journal
 
+## 2026-10-01 13:18 UTC — Session blocked (still no market data)
+
+79th+ consecutive hourly run, identical blocker confirmed again:
+`curl` to `query1.finance.yahoo.com` returns exit 56 / HTTP 000
+(CONNECT tunnel failed). `/__agentproxy/status` confirms a fresh
+`recentRelayFailures` entry for this exact host, timestamped
+2026-10-01T13:19:17.388Z, reason `connect_rejected` ("gateway
+answered 403 to CONNECT (policy denial or upstream failure)"); the
+`noProxy` allowlist still has no market-data host — only
+api.anthropic.com, package registries, and private ranges, unchanged
+from every prior run. Per `/root/.ccr/README.md`, this is a
+403-class organization policy denial to report, not retry or route
+around, so no alternate market-data host was re-probed (stooq,
+twelvedata, and example.com were already exhaustively ruled out in
+earlier sessions) and no data was fabricated. Re-confirmed via
+`read_documentation(environment.network)`: the fix is for the user
+to broaden Network access or allowlist a market-data host in the
+cloud environment's settings. No candles fetched, no indicators
+computed, no trades opened/closed, no state change. Campaign 1
+remains at 0/1000 trades, ~79 hours after being initialized at
+2026-09-28 06:18 UTC.
+
+Also verified git hygiene this run: local HEAD is in a detached
+state again (a cosmetic artifact of committing/pushing directly to
+`origin/main` without a checked-out local branch), but `git fetch
+origin main` confirms `origin/main` matches this session's HEAD
+exactly (2f3f445 going into this run) — prior hourly commits,
+including last run's, are landing on GitHub correctly. No actual
+push/divergence problem.
+
+Last escalation push notification was at ~21:17-21:18 UTC on
+2026-09-30, ~16 hours ago — still under the ~24h re-notify
+threshold, and nothing about the error has changed, so no new push
+notification this run. Will notify again when the error changes,
+egress is restored, or ~24h elapses unresolved from the last
+escalation (around 2026-09-30 21:17 UTC + 24h ≈ 2026-10-01 21:17
+UTC).
+
 ## 2026-10-01 12:17 UTC — Session blocked (still no market data)
 
 75th+ consecutive hourly run, identical blocker: direct `curl` to
