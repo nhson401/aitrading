@@ -1418,3 +1418,32 @@ nothing about the error has changed — so no new push notification this
 run. Will notify again when the error changes, egress is restored, or
 ~24h elapses unresolved from the last escalation (around 2026-10-01
 21:18 UTC).
+
+## 2026-10-01 14:19 UTC — still blocked, re-escalating (campaign 1, ~80h blocked)
+
+Re-ran STEP 2 against both `query1.finance.yahoo.com` endpoints (1h/7d and
+1d/180d). Both connections failed outright (curl exit, HTTP_CODE 000) —
+the environment's network policy denies this host; confirmed via the
+`environment.network` documentation page rather than assumption. No
+candles fetched, no indicators computed, no trades opened/closed/entered.
+`trades.json` is unchanged: 0 trades total, campaign 1 has made zero
+progress since it was initialized 2026-09-28 06:18. This is now ~80 hours
+(3+ days) with every single hourly run blocked at STEP 2 — the egress
+denial has never cleared across 80+ consecutive runs.
+
+This session also started on a locally "detached" HEAD, 17 commits ahead
+of the then-cached `origin/main`. Investigated per the earlier (incorrect)
+concern that pushes were silently failing, but `git fetch origin main`
+showed origin already had all 17 commits (tip 95cb0f9) — consistent with
+the 2026-10-01 07:19 and 09:17 entries above, which also confirmed this
+"detached" display is cosmetic and every hourly commit has in fact been
+landing on origin's main correctly. Rebased this run's commit onto the
+fetched origin/main and checked out `main` locally so the branch pointer
+is current going forward; no data was lost and no real push bug exists.
+
+Re-notifying the user now: last notification was the 2026-09-29 08:19 UTC
+re-escalation, ~54 hours ago — well past the ~24h self-imposed re-check
+threshold, and the block has now spanned the campaign's entire lifetime.
+Will keep running hourly and will re-notify again if ~24h passes still
+unresolved, the error changes, or egress is restored and real progress
+resumes.
