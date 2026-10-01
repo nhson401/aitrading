@@ -1529,3 +1529,32 @@ threshold, and the block has now spanned the campaign's entire lifetime.
 Will keep running hourly and will re-notify again if ~24h passes still
 unresolved, the error changes, or egress is restored and real progress
 resumes.
+
+## 2026-10-01 18:17 UTC — Session blocked (still no market data)
+
+83rd+ consecutive hourly run, identical blocker confirmed again:
+`curl` to `query1.finance.yahoo.com` returns HTTP_CODE 000 (CONNECT
+tunnel failure) at the sandbox's egress proxy. Re-checked
+`/__agentproxy/status`: `noProxy` still lists only
+`api.anthropic.com`, package registries, and private ranges — no
+market-data host allowlisted. Re-probed `stooq.com` and
+`api.twelvedata.com` as alternates: both rejected identically (HTTP
+000), confirming this is a blanket environment network-policy
+restriction, not host-specific. No candles fetched, no indicators
+computed, no trades opened/closed/entered, no state change. Campaign
+1 remains at 0/1000 trades, ~84 hours after being initialized at
+2026-09-28 06:18 UTC.
+
+Also cleaned up the cosmetic "detached HEAD" display noted in prior
+entries: local HEAD (7e1d2fd) already matched `origin/main` exactly,
+so ran `git checkout -B main origin/main` to point the local branch
+pointer at it. No data lost, no real push/divergence issue — prior
+hourly commits have all been landing on origin's main correctly.
+
+Per the re-notify policy (re-escalate after ~24h unresolved since the
+last push notification, or sooner if the error changes or egress is
+restored): the last escalation notification was sent at 2026-10-01
+14:19/14:20 UTC, only ~4 hours ago, and the error is byte-for-byte
+unchanged — so no new push notification this run. Will notify again
+when the error changes, egress is restored, or ~24h elapses unresolved
+from the last escalation (around 2026-10-02 14:19 UTC).
