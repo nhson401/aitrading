@@ -1243,3 +1243,35 @@ notification, well under the ~24h re-notify threshold, and nothing
 about the error has changed — so no new push notification this run.
 Will notify again only when the error changes, egress is restored,
 or ~24h elapses unresolved from the last escalation.
+
+## 2026-10-01 07:19 UTC — Session blocked (still no market data)
+
+74th+ consecutive hourly run, identical blocker confirmed again.
+`curl` to `query1.finance.yahoo.com` fails at the sandbox's egress
+proxy with `connect_rejected` ("the egress proxy denied the CONNECT
+(organization policy)"); `/__agentproxy/status` shows the same
+`connect_rejected` / gateway-403 entry for this host. Also probed
+stooq.com, api.twelvedata.com, and even example.com as alternate
+data sources — all three were rejected identically, confirming this
+sandbox is on a strict allowlist policy with no financial-data host
+reachable, not something specific to Yahoo. Re-checked
+`read_documentation(environment.network)`: still an environment
+network-policy denial: the fix is for the user to broaden Network
+access (or allowlist a market-data host) in the cloud environment's
+settings. No candles fetched, no trades opened/closed, no state
+change. Campaign 1 is still at 0/1000 trades, ~73 hours after being
+initialized at 2026-09-28 06:18 UTC.
+
+Also verified git hygiene this run: local HEAD appeared "detached"
+and diverged from the locally-cached `main`/`origin/main` refs, but
+`git fetch origin main` showed this was just a stale local tracking
+ref — the real `origin/main` on GitHub matches this session's HEAD
+exactly (3613a7f). No actual push/divergence problem; prior hourly
+commits have all been landing on origin's main branch correctly.
+
+Only ~10 hours have passed since the last escalation push
+notification (~2026-09-30 21:18 UTC), still under the ~24h
+re-notify threshold, and nothing about the error has changed — so
+no new push notification this run. Will notify again only when the
+error changes, egress is restored, or ~24h elapses unresolved from
+the last escalation.
