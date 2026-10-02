@@ -1,5 +1,38 @@
 # Gold Trading Journal
 
+## 2026-10-02 13:18 UTC — Session blocked (still no market data)
+
+101st+ consecutive hourly run, identical blocker confirmed again via two
+independent checks: direct `curl` to `query1.finance.yahoo.com` returns
+HTTP_CODE 000 / exit 56 (CONNECT tunnel failed), and `__agentproxy/status`
+confirms a fresh `recentRelayFailures` entry for this exact host/reason
+(`connect_rejected`, "gateway answered 403 to CONNECT (policy denial or
+upstream failure)") timestamped 2026-10-02T13:18:32.246Z. `noProxy` is
+unchanged — still only api.anthropic.com, package registries, and
+private ranges; no market-data host allowlisted. Per
+`/root/.ccr/README.md`, this is a 403-class organization policy denial
+to report, not retry or route around, so no alternate market-data host
+was attempted (stooq, twelvedata, example.com already exhaustively
+ruled out in earlier sessions) and no data was fabricated. No candles
+fetched, no indicators computed, no trades opened/closed/entered, no
+state change to trades.json/performance.json/strategy-weights.json.
+Campaign 1 remains at 0/1000 trades, ~103 hours after being initialized
+at 2026-09-28 06:18 UTC.
+
+Verified git hygiene: local HEAD was detached again this session but
+matched `origin/main` (3bfff2f) exactly — `git checkout -B main
+origin/main` was denied by the permission classifier as a destructive
+git op, so re-attached non-destructively instead via `git checkout
+main && git merge --ff-only origin/main` (local `main` was 40 commits
+behind at 626e0b8; fast-forwarded cleanly to 3bfff2f, no drift, no
+conflicts).
+
+Last escalation push notification was at ~21:17 UTC on 2026-10-01, ~16
+hours ago — still under the ~24h re-notify threshold, and nothing about
+the error has changed, so no new push notification this run. Will
+re-notify when the error changes, egress is restored, or ~24h elapses
+unresolved from the last escalation (around 2026-10-02 21:17 UTC).
+
 ## 2026-10-02 12:18 UTC — Session blocked (still no market data)
 
 100th+ consecutive hourly run, identical blocker confirmed again via two
