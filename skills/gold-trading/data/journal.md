@@ -1944,3 +1944,33 @@ and nothing about the error has changed — so no new push notification
 this run. Will notify again when the error changes, egress is restored,
 or ~24h elapses unresolved from the last escalation (around 2026-10-02
 14:19 UTC).
+
+## 2026-10-02 11:17 UTC — Session blocked (still no market data)
+
+99th+ consecutive hourly run, identical blocker confirmed again: direct
+`curl` to `query1.finance.yahoo.com` returns CONNECT tunnel failure, HTTP
+403 from the proxy gateway (policy denial, not an upstream outage —
+confirmed via `$HTTPS_PROXY/__agentproxy/status`, `recentRelayFailures`
+shows `connect_rejected` / "gateway answered 403 to CONNECT (policy denial
+or upstream failure)" for `query1.finance.yahoo.com:443`). Re-confirmed via
+the environment documentation tool: this is the environment's Network
+access setting denying the host; fix is on the person's side (broaden
+access level or allowlist the host in the cloud environment's settings),
+not fixable from inside the session. No alternate market-data host
+attempted (already exhaustively ruled out in earlier sessions: stooq,
+twelvedata, example.com). No data was fabricated. No candles fetched, no
+indicators computed, no trades opened/closed/entered, no state change to
+trades.json/performance.json/strategy-weights.json. Campaign 1 remains at
+0/1000 trades, ~101 hours after being initialized at 2026-09-28 06:18 UTC.
+
+Verified git hygiene: local HEAD was detached again this session but
+matched `origin/main` (90db2af, last run's "agent 10:18" commit) exactly —
+re-attached to a tracking `main` branch via `git checkout -B main
+origin/main`, no drift found.
+
+Only ~21 hours have passed since the last escalation push notification
+(2026-10-01 14:19/14:20 UTC), still under the ~24h re-notify threshold,
+and nothing about the error has changed — so no new push notification
+this run. Will notify again when the error changes, egress is restored,
+or ~24h elapses unresolved from the last escalation (around 2026-10-02
+14:19 UTC).
