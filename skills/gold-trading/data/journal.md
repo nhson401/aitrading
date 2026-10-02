@@ -1,5 +1,29 @@
 # Gold Trading Journal
 
+## 2026-10-02 02:17 UTC — Session blocked (still no market data)
+
+90th+ consecutive hourly run, identical blocker confirmed again: direct
+`curl` to `query1.finance.yahoo.com` returns HTTP_CODE 000 / exit 56
+(CONNECT tunnel rejected), and `__agentproxy/status` confirms a fresh
+`recentRelayFailures` entry for this exact host/reason (`connect_rejected`,
+"gateway answered 403 to CONNECT (policy denial or upstream failure)")
+timestamped 2026-10-02T02:17:26.642Z. The `noProxy` allowlist is unchanged
+— still only api.anthropic.com, package registries, and private ranges; no
+market-data host. Per `/root/.ccr/README.md`, this is a 403-class
+organization policy denial to report, not retry or route around, so no
+alternate market-data host was attempted (stooq, twelvedata, example.com
+already exhaustively ruled out in earlier sessions) and no data was
+fabricated. No candles fetched, no indicators computed, no trades
+opened/closed, no state change to trades.json/performance.json/
+strategy-weights.json. Campaign 1 remains at 0/1000 trades, ~92 hours
+after being initialized at 2026-09-28 06:18 UTC.
+
+Last escalation push notification was at ~21:17 UTC on 2026-10-01, ~5
+hours ago — well under the ~24h re-notify threshold, and nothing about the
+error has changed, so no new push notification this run. Will notify
+again when the error changes, egress is restored, or the ~21:17 UTC
+2026-10-02 mark is reached unresolved.
+
 ## 2026-10-02 00:18 UTC — Session blocked (still no market data)
 
 89th+ consecutive hourly run, identical blocker confirmed again: direct
